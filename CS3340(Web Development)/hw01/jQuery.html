@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style type="text/css">
+        .auto-style1 {
+            width: 75%;
+            height: 311px;
+        }
+        .auto-style2 {
+            margin-left: 0px;
+        }
+        .auto-style3 {
+            width: 121px;
+        }
+        .auto-style4 {
+            width: 229px;
+        }
+        .auto-style5 {
+            width: 809px;
+        }
+    </style> 
+    <script>
+        $(document).ready(function () {
+            $("#btnPur").click(function () {
+                var msg = 'Order\n--------------------';
+                var title = [];
+                var price = [];
+                var total = 0;
+                $("#titles option:selected").each(function () {
+                    title.push($(this).text());
+                    price.push($(this).val());
+                    total += parseInt($(this).val());
+                });
+                for (i = 0; i < title.length; i++) {
+                    msg += "\n$" + price[i] + ".00 - " + title[i];
+                }
+
+                var bTitle = $("#bookTitle").val();
+                var bPrice = $("#bookPrice").val();
+                if (bTitle != ''){
+                    msg += "\n$" + bPrice + ".00 - " + bTitle + " (user specified)";  
+                    total += parseInt(bPrice);
+                }
+
+                var discount = false;
+                if ($("#genCus").prop("checked")) {
+                    msg += "\nGeneral Customer"
+                }
+                else {
+                    msg += "\nGovernment Customer"
+                    discount = true
+                }
+
+                var optPrice = [];
+                $("input[name='chkOpts']:checked").each(function() {
+                    optPrice.push($(this).val());
+                });
+                if (optPrice[0] != null) {
+                    for (i = 0; i < optPrice.length; i++) {
+                        msg += "\n$" + optPrice[i] + ".00 - ";
+                        if (optPrice[i] == '10') {
+                            msg += "Rush Order"
+                        }
+                        else {
+                            msg += "Gift Wrap"
+                        }
+                        total += parseInt(optPrice[i]);
+                    }
+                }
+
+                var state = $("#ddShipTo option:selected").text();
+                var shipCost = $("#ddShipTo option:selected").val();
+                msg += "\n$" + shipCost + ".00 - Ship to " + state;
+                total += parseInt(shipCost);
+                msg += "\n--------------------";
+                if (discount) {
+                    msg += "\nSub Total: $" + total + ".00"
+                    msg += "\nDiscount (10%): $" + (parseInt(total) / 10).toPrecision(3)
+                    total = parseInt(total) - parseInt(total) / 10
+                }
+
+                msg += "\nTotal: $" + total.toPrecision(4);
+                $("#txaInfo").val(msg);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h4><a href="default.html">HW 1 </a>> jQuery Example</h4>
+    <h1>Book Order Form</h1>
+    <div style="padding: 15px;">
+    <table class="auto-style1">
+        <tr>
+            <td class="auto-style3"><span class="importantText" width: 100px;>Select Books and/or Supply Book title and price.</span>&nbsp; </td>
+            <td class="auto-style4">
+            <select size="4" id="titles" class="auto-style2" multiple ="multiple">
+                <option value="20">Walden Pond</option>
+                <option value="15">Zen and the Art...</option>
+                <option value="8">The Razor's Edge</option>
+                <option value="15">The Poisonwood Bible</option>
+                <option value="10">Wuthering Heights</option>
+            </select></td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style4">Title
+    		<input type="text" id="bookTitle" size="20" value="" />&nbsp;</td>
+            <td class="auto-style5">Price
+    		<input type="text" id="bookPrice" size="20" value="" />&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="importantText">Options&nbsp;</td>
+            <td class="auto-style4">
+                <input type="checkbox" name="chkOpts" value="10"/>Rush Order 
+                <input type="checkbox" name="chkOpts" value="5"/>Gift Wrap
+            </td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="importantText">Customer Type&nbsp;</td>
+            <td class="auto-style4">
+                <input type="radio" name="radCusType"  id="genCus" checked />General
+			    <input type="radio" name="radCusType" id="Government Customer" />Government</td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="importantText">Ship To&nbsp;</td>
+            <td class="auto-style4">
+            <select size="1" id="ddShipTo" class="auto-style2" name="D2">
+                <option value="5">NY</option>
+                <option value="7">CA</option>
+                <option value="3">SC</option>
+            </select></td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style4">Purchase details:</td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3"><button type="button" id="btnPur">Purchase</button></td>
+            <td colspan="2"><textarea id="txaInfo" rows="15" cols="75">Place your order</textarea></td>
+        </tr>
+    </table>
+        </div>
+</body>
+</html>

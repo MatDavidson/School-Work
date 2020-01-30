@@ -1,0 +1,34 @@
+﻿body {
+  background-color: #CCCCFF;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+    table tr td {
+        background-color: #FFFFCC;
+        border: 15px solid #9999FF;
+        padding: 15px;
+        font-family: Verdana;
+    }
+
+.redText {
+    color: red;
+}
+
+.importantText{
+
+}
+
+.inner {
+    border: 15px solid #9999FF;
+    padding: 5px;
+    background-color: black;
+}
+
+.outer {
+    border: 40px solid #CCCCFF;
+    background-color: #CC99FF;
+    padding: 35px;
+}

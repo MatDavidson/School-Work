@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>jQuery 2</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#process").click(function () {
+                var name = $("#name").val();
+                var classificationDesc = $("#classification option:selected").text();
+                var classificationNum = $("#classification option:selected").val();
+                var activities = [];
+                // Below, could also use this:
+                // $(".acts:checked").each(function() {
+                // $("[name='activities']:checked").each(function () {
+                $("input[name='activities']:checked").each(function () {
+                    activities.push($(this).val());
+                });
+                var mood = $("input[name='mood']:checked").val();
+
+                var classes = [];
+                var credits = [];
+                var totalCredits = 0;
+                $("#classes option:selected").each(function () {
+                    classes.push($(this).text());
+                    credits.push($(this).val());
+                    totalCredits += parseInt($(this).val());
+                });
+
+                var message = "Name: " + name + "\n";
+                message += "Class: " + classificationDesc + "-" + classificationNum + "\n";
+                message += "Activities: ";
+                for (i = 0; i < activities.length; i++)
+                    message += activities[i] + (i < activities.length - 1 ? ", " : "");
+                message += "\nMood: " + mood + "\n";
+                message += "Classes: ";
+                for (i = 0; i < classes.length; i++)
+                    message += classes[i] + "-" + credits[i] + (i < classes.length - 1 ? ", " : "");
+                message += "\nTotal Credits: " + totalCredits;
+
+                $("#message").val(message);
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+<h2>Student Data</h2>
+    <p>Name <input id="name" class="inVals" type="text" /></p>
+
+    <p>Classification:
+        <select id="classification" class="inVals" name="D1">
+            <option value="1">Freshman</option>
+            <option value="2">Sophomore</option>
+            <option value="3">Junior</option>
+            <option value="4">Senior</option>
+        </select>
+    </p>
+
+    <p>Activities:
+        <input name="activities" class="acts" type="checkbox" value="Soccer" />Soccer 
+        <input name="activities" class="acts" type="checkbox" value="Chess" />Chess 
+        <input name="activities" class="acts" type="checkbox" value="ACM" />ACM 
+    </p>
+    
+    <p>Mood:
+        <input name="mood" type="radio" value="Happy" />Happy 
+        <input name="mood" type="radio" value="Copacetic" />Copacetic 
+        <input name="mood" type="radio" value="Sad" />Sad 
+    </p>        
+    
+    <p>Classes:</p>
+
+        <select size="5" id="classes" multiple="multiple">
+            <option value="3">CS 3300</option>
+            <option value="2">CS 3340</option>
+            <option value="4">CS 3410</option>
+            <option value="4">CS 3520</option>
+            <option value="3">CS 4721</option>
+        </select>
+    
+    <p><button type="button" id="process">Process</button></p>
+
+    <p><textarea rows="10" id="message" cols="50"></textarea></p>
+
+</body>
+
+</html>

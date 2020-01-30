@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript Example</title>
+    <link href="StyleSheet2.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function purchaseOrder() {         
+            var msg = "Order\n---------------------------";
+            var txaInfo = document.getElementById('txaInfo');
+            var total = 0;
+
+            var ddBooks = document.getElementById('titles');
+            for (i = 0; i < ddBooks.length; i++) {
+                if (ddBooks.options[i].selected) {
+                    msg += "\n$" + ddBooks[i].value + ".00 - " + ddBooks[i].text;
+                    total += parseInt(ddBooks[i].value);
+                }
+            }
+            var txfTitle = document.getElementById('bookTitle');
+            var txfPrice = document.getElementById('bookPrice');
+            if (txfTitle.value != "") {
+                msg += "\n$" + txfPrice.value + ".00 - " + txfTitle.value + "(user specified)";
+                total += parseInt(txfPrice.value)
+            }
+            var discount = false;
+            if (document.getElementById('genCus').checked == true) {
+                msg += "\nGeneral Customer"
+            }
+            else {
+                msg += "\nGovernemt Customer"
+                discount = true;
+            }
+
+            var chkOpts = document.getElementsByName("chkOpts");
+            for (i = 0; i < chkOpts.length; i++) {
+                if (chkOpts[i].checked) {
+                    msg += "\n$" + chkOpts[i].value + ".00 - " + chkOpts[i].id
+                    total += parseInt(chkOpts[i].value);
+                }
+            }
+            var ddShipTo = document.getElementById('ddShipTo');
+            for (i = 0; i < ddShipTo.length; i++) {
+                if (ddShipTo.options[i].selected) {
+                    msg += "\n$" + ddShipTo[i].value + ".00 - Ship to " + ddShipTo[i].text;
+                    total += parseInt(ddShipTo[i].value);
+                }
+            }
+            msg += "\n---------------------------"
+            if (discount) {
+                msg += "\nSubtotal\nDiscount (10%): $" + parseFloat(parseFloat(total)/10).toPrecision(3)
+                total -= parseFloat(total)/10
+            }
+                msg += "\nTotal: $" + parseFloat(total).toPrecision(4)
+
+            txaInfo.value = msg;
+            document.getElementById('stuff').value = msg;
+       }
+    </script>
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 75%;
+            height: 311px;
+        }
+        .auto-style2 {
+            margin-left: 0px;
+        }
+        .auto-style3 {
+            width: 121px;
+        }
+        .auto-style4 {
+            width: 264px;
+        }
+        .auto-style5 {
+            width: 809px;
+        }
+    </style> 
+</head>
+
+<body>
+    <h4><a href="default.html">HW 1 ></a> JavaScript Example</h4>
+    <h1>Book Order Form</h1>
+    <div style="padding: 15px;">
+    <table class="auto-style1">
+        <tr>
+            <td class="auto-style3"><span class="importantText" width: 100px;>Select Books and/or Supply Book title and price.</span>&nbsp; </td>
+            <td class="auto-style4">
+            <select size="4" id="titles" class="auto-style2" multiple>
+                <option value="20">Walden Pond</option>
+                <option value="15">Zen and the Art...</option>
+                <option value="8">The Razor's Edge</option>
+                <option value="15">The Poisonwood Bible</option>
+                <option value="10">Wuthering Heights</option>
+            </select></td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style4">Title
+    		<input type="text" id="bookTitle" size="20" value="" />&nbsp;</td>
+            <td class="auto-style5">Price
+    		<input type="text" id="bookPrice" size="20" value="" />&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="importantText">Options&nbsp;</td>
+            <td class="auto-style4">
+                <input type="checkbox" name="chkOpts" value="10" id="Rush Order"/>Rush Order 
+                <input type="checkbox" name="chkOpts" value="5" id="GiftWrap"/>Gift Wrap
+            </td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="importantText">Customer Type&nbsp;</td>
+            <td class="auto-style4">
+                <input type="radio" name="radCusType" id="genCus" checked />General
+			    <input type="radio" name="radCusType" id="govCus" />Government</td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="importantText">Ship To&nbsp;</td>
+            <td class="auto-style4">
+            <select size="1" id="ddShipTo" class="auto-style2" name="D2">
+                <option value="5">NY</option>
+                <option value="7">CA</option>
+                <option value="3">SC</option>
+            </select></td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style4">Purchase details:</td>
+            <td class="auto-style5">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style3"><button type="button" onclick="purchaseOrder();" >Purchase</button></td>
+            <td colspan="2"><textarea id="txaInfo" rows="15" cols="75">Place your order</textarea></td>
+        </tr>
+    </table>
+        </div>
+    <p id="stuff"></p>
+
+</body>
+     
+</html>

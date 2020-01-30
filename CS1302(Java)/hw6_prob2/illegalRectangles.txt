@@ -1,0 +1,3 @@
+Illegal Rectangle: Width=0.50, Height=0.25, Area=0.13
+Illegal Rectangle: Width=0.40, Height=0.90, Area=0.36
+Illegal Rectangle: Width=0.10, Height=0.20, Area=0.02

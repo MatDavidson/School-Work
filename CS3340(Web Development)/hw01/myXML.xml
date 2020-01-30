@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+
+<GoodGames>
+  <Game>
+    <Title>Metal Gear Solid V</Title>
+    <Studio>Kojima Productions</Studio>
+    <Publisher>Konami</Publisher>
+    <Genre>Action/Adventure</Genre>
+    <Release>9/1/15</Release>
+  </Game>
+  <Game>
+    <Title>Borderlands 2</Title>
+    <Studio>Gearbox Software</Studio>
+    <Publisher>2K Games</Publisher>
+    <Genre>Action Role-playing</Genre>
+    <Release>9/18/12</Release>
+  </Game>
+  <Game>
+    <Title>Sea of Thieves</Title>
+    <Studio>Rare</Studio>
+    <Publisher>Microsoft Studios</Publisher>
+    <Genre>Action/Adventure</Genre>
+    <Release>3/20/18</Release>
+  </Game>
+  <Game>
+    <Title>Fallout 4</Title>
+    <Studio>Bethesda Game Studios</Studio>
+    <Publisher>Bethesda Softworks</Publisher>
+    <Genre>Action Role-playing</Genre>
+    <Release>11/10/15</Release>
+  </Game>
+</GoodGames>
