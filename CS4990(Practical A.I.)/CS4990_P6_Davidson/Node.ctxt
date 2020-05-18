@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Node
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Node\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=type\ y\ x\ l
+comment1.target=Node(int,\ int,\ int,\ Link)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ flip()
+comment4.params=
+comment4.target=void\ setHeur()
+comment5.params=
+comment5.target=void\ setSteps()
+comment6.params=
+comment6.target=void\ setCost()
+comment7.params=a\ b
+comment7.target=int\ getDiff(int,\ int)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=
+comment9.target=void\ plunder()
+numComments=10
